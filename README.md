@@ -7,6 +7,7 @@ A complete Docker-based development environment for Odoo 19 with custom addons s
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
 - [Quick Start](#quick-start)
+- [GitHub Deployment](#github-deployment)
 - [Project Structure](#project-structure)
 - [Configuration](#configuration)
 - [Development Workflow](#development-workflow)
@@ -61,6 +62,57 @@ docker-compose up -d
 # Or use the startup script
 ./scripts/start.sh
 ```
+
+## ☁️ GitHub Deployment
+
+**Run Odoo in the cloud without local Docker installation!**
+
+### Option 1: GitHub Codespaces (Recommended for Development)
+
+1. Click the **Code** button on GitHub
+2. Select **Codespaces** tab
+3. Click **Create codespace on main**
+4. Wait for environment to start (~2 minutes)
+5. Access Odoo at the forwarded port 8069
+
+✅ No local setup required
+✅ Pre-configured development environment
+✅ VS Code in the browser
+✅ Free tier: 120 hours/month
+
+### Option 2: Deploy to Cloud Platform
+
+Choose your platform:
+
+| Platform | Setup Time | Cost | Best For |
+|----------|------------|------|----------|
+| [Render](https://render.com) | 5 min | Free tier available | Quick deployments |
+| [Railway](https://railway.app) | 5 min | $5 credit/month | Startups |
+| [DigitalOcean](https://www.digitalocean.com) | 10 min | ~$12/month | Production |
+
+**Quick Deploy to Render:**
+1. Fork this repository
+2. Go to [Render Dashboard](https://dashboard.render.com)
+3. Click "New" → "Blueprint"
+4. Connect your GitHub repository
+5. Render auto-detects `render.yaml`
+6. Click "Apply" and wait for deployment
+
+### Option 3: Automated Builds with GitHub Actions
+
+Every push to `main` or `develop` automatically:
+- ✅ Builds and tests Odoo
+- ✅ Creates Docker image
+- ✅ Pushes to GitHub Container Registry
+
+**Use the built image:**
+```bash
+docker pull ghcr.io/YOUR_USERNAME/YOUR_REPO/odoo:latest
+```
+
+📚 **Full deployment guide:** See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions
+
+---
 
 ### 3. Access Odoo
 
