@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top Menu -->
+    <menuitem id="menu_example_root"
+              name="Example App"
+              sequence="10"
+              web_icon="example_module,static/description/icon.png"/>
+
+    <!-- Sub Menu -->
+    <menuitem id="menu_example_main"
+              name="Examples"
+              parent="menu_example_root"
+              sequence="1"/>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_example_model"
+              name="All Examples"
+              parent="menu_example_main"
+              action="action_example_model"
+              sequence="1"/>
+
+    <!-- Configuration Menu -->
+    <menuitem id="menu_example_config"
+              name="Configuration"
+              parent="menu_example_root"
+              sequence="100"
+              groups="base.group_system"/>
+</odoo>

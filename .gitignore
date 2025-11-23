@@ -1,0 +1,185 @@
+# Odoo 19 Project .gitignore
+
+# Environment and secrets
+.env
+*.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.project
+.pydevproject
+.settings/
+
+# Odoo specific
+# Log files
+logs/*.log
+logs/*.txt
+*.log
+
+# Odoo filestore (generated data)
+filestore/
+data_dir/
+.local/
+
+# Odoo session files
+sessions/
+
+# Database dumps
+*.sql
+*.dump
+*.backup
+
+# Compiled files
+*.pyc
+*.pyo
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.pytest_cache/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+.~*
+.*.swp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Docker volumes (keep structure but not data)
+# The actual data is in Docker volumes
+
+# Keep directory structure
+!logs/.gitkeep
+!addons/.gitkeep
+
+# Node modules (if using frontend tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Package manager
+*.lock
+package-lock.json
+yarn.lock
+
+# Odoo addons to ignore (if pulling from external sources)
+# Uncomment if you're using external addon repositories
+# addons/external/
+
+# Backup files
+*.backup
+*.old
+
+# Test and debug files
+.pytest_cache/
+.mypy_cache/
+.tox/
+
+# Documentation builds
+docs/_build/
+docs/.doctrees/
+
+# Database
+*.db
+*.sqlite3
+
+# Certificates and keys
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Local configuration overrides
+config/local.conf
+config/*.local.conf
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+\#*\#
+.\#*
+
+# JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Odoo community/enterprise modules (if you want to ignore them)
+# addons/community/
+# addons/enterprise/
+
+# Custom: Keep example module in git
+!addons/example_module/
+
+# Temporary download files
+*.part
+*.crdownload
+
+# System files
+.fuse_hidden*
+.nfs*
