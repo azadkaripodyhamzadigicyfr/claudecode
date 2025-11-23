@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- POS Config Form View - Add Mobile Settings -->
+    <record id="view_pos_config_form_mobile" model="ir.ui.view">
+        <field name="name">pos.config.form.mobile</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='iface']" position="after">
+                <page string="Mobile &amp; Tablet" name="mobile_tablet">
+                    <group>
+                        <group string="Mobile Optimization">
+                            <field name="mobile_optimized"/>
+                            <field name="tablet_mode" attrs="{'invisible': [('mobile_optimized', '=', False)]}"/>
+                            <field name="pwa_enabled" attrs="{'invisible': [('mobile_optimized', '=', False)]}"/>
+                        </group>
+                        <group string="Mobile Features">
+                            <field name="enable_camera_barcode"/>
+                            <field name="quick_cash_payments"/>
+                            <field name="customer_display_mode"/>
+                        </group>
+                    </group>
+                    <group string="Mobile Usage Tips">
+                        <div class="alert alert-info" role="alert">
+                            <h4>📱 Mobile POS Setup:</h4>
+                            <ol>
+                                <li><b>Enable Mobile Optimized</b> for touch-friendly interface</li>
+                                <li><b>Enable PWA</b> to install POS as an app on tablets</li>
+                                <li><b>Enable Camera Barcode</b> to scan products with camera</li>
+                                <li>Access POS on tablet browser (Chrome/Safari recommended)</li>
+                                <li>Use "Add to Home Screen" for app-like experience</li>
+                            </ol>
+                            <p class="mb-0">
+                                <b>Note:</b> This is web-based only. For native mobile apps with offline mode,
+                                <a href="https://www.odoo.com/pricing" target="_blank">consider Odoo Enterprise</a>.
+                            </p>
+                        </div>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

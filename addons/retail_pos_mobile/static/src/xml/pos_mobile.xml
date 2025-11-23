@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Camera Scan Button -->
+    <t t-name="retail_pos_mobile.CameraScanButton" owl="1">
+        <button class="btn btn-primary camera-scan-button"
+                t-if="env.pos.config.enable_camera_barcode"
+                t-on-click="startCameraScanning">
+            <i class="fa fa-camera"/> Scan Barcode
+        </button>
+    </t>
+
+    <!-- Quick Cash Payment Buttons -->
+    <t t-name="retail_pos_mobile.QuickCashButtons" owl="1">
+        <div class="quick-cash-buttons" t-if="env.pos.config.quick_cash_payments">
+            <button class="quick-cash-btn" t-on-click="() => this.addCashAmount(5)">$5</button>
+            <button class="quick-cash-btn" t-on-click="() => this.addCashAmount(10)">$10</button>
+            <button class="quick-cash-btn" t-on-click="() => this.addCashAmount(20)">$20</button>
+            <button class="quick-cash-btn" t-on-click="() => this.addCashAmount(50)">$50</button>
+            <button class="quick-cash-btn" t-on-click="() => this.addCashAmount(100)">$100</button>
+            <button class="quick-cash-btn" t-on-click="() => this.addExactAmount()">Exact</button>
+        </div>
+    </t>
+
+    <!-- Mobile-Optimized Product Card -->
+    <t t-name="retail_pos_mobile.ProductCard" owl="1">
+        <div class="product mobile-optimized touchable"
+             t-att-data-product-id="product.id"
+             t-on-click="selectProduct">
+            <div class="product-img-container">
+                <img t-if="product.image_128"
+                     t-att-src="'data:image/png;base64,' + product.image_128"
+                     alt="Product Image"/>
+                <div t-else="" class="product-img-placeholder">
+                    <i class="fa fa-picture-o"/>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name" t-esc="product.display_name"/>
+                <div class="product-price" t-esc="formatCurrency(product.lst_price)"/>
+            </div>
+        </div>
+    </t>
+
+    <!-- Offline Indicator -->
+    <t t-name="retail_pos_mobile.OfflineIndicator" owl="1">
+        <div class="offline-indicator" id="offline-indicator">
+            <i class="fa fa-exclamation-triangle"/>
+            No Internet Connection - Some features may be limited
+        </div>
+    </t>
+
+    <!-- PWA Install Banner -->
+    <t t-name="retail_pos_mobile.PWABanner" owl="1">
+        <div class="pwa-install-prompt" id="pwa-install-prompt">
+            <div>
+                <strong>📱 Install Odoo POS</strong>
+                <p>Add to your home screen for faster access!</p>
+                <button class="pwa-install-btn primary">Install</button>
+                <button class="pwa-install-btn secondary">Not Now</button>
+            </div>
+        </div>
+    </t>
+
+</templates>

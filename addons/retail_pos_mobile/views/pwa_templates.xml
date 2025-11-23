@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- PWA Manifest -->
+    <template id="pwa_manifest" name="PWA Manifest">
+        <manifest xmlns="http://www.w3.org/2000/xmlns/">
+            {
+                "name": "Odoo POS - Point of Sale",
+                "short_name": "Odoo POS",
+                "description": "Point of Sale System",
+                "start_url": "/pos/ui",
+                "display": "standalone",
+                "orientation": "any",
+                "background_color": "#714B67",
+                "theme_color": "#714B67",
+                "icons": [
+                    {
+                        "src": "/web/static/img/logo.png",
+                        "sizes": "192x192",
+                        "type": "image/png"
+                    },
+                    {
+                        "src": "/web/static/img/logo.png",
+                        "sizes": "512x512",
+                        "type": "image/png"
+                    }
+                ],
+                "categories": ["business", "productivity"],
+                "screenshots": []
+            }
+        </manifest>
+    </template>
+
+    <!-- Service Worker -->
+    <template id="service_worker" name="Service Worker">
+        const CACHE_NAME = 'odoo-pos-v1';
+        const urlsToCache = [
+            '/pos/ui',
+            '/web/static/src/css/bootstrap.css',
+            '/web/static/lib/jquery/jquery.js',
+        ];
+
+        self.addEventListener('install', (event) => {
+            event.waitUntil(
+                caches.open(CACHE_NAME)
+                    .then((cache) => cache.addAll(urlsToCache))
+            );
+        });
+
+        self.addEventListener('fetch', (event) => {
+            event.respondWith(
+                caches.match(event.request)
+                    .then((response) => response || fetch(event.request))
+            );
+        });
+    </template>
+
+    <!-- Add PWA meta tags to POS -->
+    <template id="pos_assets_pwa" inherit_id="point_of_sale.index">
+        <xpath expr="//head" position="inside">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+            <meta name="mobile-web-app-capable" content="yes"/>
+            <meta name="apple-mobile-web-app-capable" content="yes"/>
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+            <meta name="apple-mobile-web-app-title" content="Odoo POS"/>
+            <meta name="theme-color" content="#714B67"/>
+            <link rel="manifest" href="/retail_pos_mobile/static/manifest.json"/>
+            <link rel="apple-touch-icon" href="/web/static/img/logo.png"/>
+        </xpath>
+    </template>
+</odoo>
