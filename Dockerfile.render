@@ -1,0 +1,28 @@
+FROM odoo:19.0
+
+USER root
+
+# Copy custom addons
+COPY ./addons /mnt/extra-addons
+
+# Copy configuration
+COPY ./config/odoo.conf /etc/odoo/odoo.conf
+
+# Install any additional dependencies if needed
+# COPY requirements.txt /tmp/
+# RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
+
+# Set correct permissions
+RUN chown -R odoo:odoo /mnt/extra-addons && \
+    chmod -R 755 /mnt/extra-addons
+
+# Create logs directory
+RUN mkdir -p /var/log/odoo && chown -R odoo:odoo /var/log/odoo
+
+USER odoo
+
+# Expose Odoo ports
+EXPOSE 8069 8072
+
+# Start Odoo
+CMD ["odoo", "--config=/etc/odoo/odoo.conf"]

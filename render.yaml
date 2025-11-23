@@ -1,0 +1,42 @@
+services:
+  # Odoo Web Application
+  - type: web
+    name: odoo19
+    runtime: docker
+    dockerfilePath: ./Dockerfile.render
+    envVars:
+      - key: HOST
+        fromDatabase:
+          name: odoo-db
+          property: host
+      - key: PORT
+        fromDatabase:
+          name: odoo-db
+          property: port
+      - key: USER
+        fromDatabase:
+          name: odoo-db
+          property: user
+      - key: PASSWORD
+        fromDatabase:
+          name: odoo-db
+          property: password
+      - key: POSTGRES_DB
+        value: odoo
+      - key: ODOO_ADMIN_PASSWORD
+        generateValue: true
+      - key: DEV_MODE
+        value: "False"
+    disk:
+      name: odoo-data
+      mountPath: /var/lib/odoo
+      sizeGB: 10
+    healthCheckPath: /web/database/selector
+    autoDeploy: true
+
+databases:
+  # PostgreSQL Database
+  - name: odoo-db
+    databaseName: odoo
+    user: odoo
+    plan: starter

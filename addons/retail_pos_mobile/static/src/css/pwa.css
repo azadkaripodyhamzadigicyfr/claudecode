@@ -1,0 +1,98 @@
+/* PWA Specific Styles */
+
+/* Hide address bar on mobile browsers */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* PWA splash screen */
+.pwa-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #714B67;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 99999;
+}
+
+.pwa-splash-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+.pwa-splash-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Prevent pull-to-refresh on mobile */
+body {
+    overscroll-behavior-y: contain;
+}
+
+/* Prevent text selection on long press */
+.pwa-no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Safe area for notched devices */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+        padding-bottom: max(0px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Install button in menu */
+.pwa-install-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #714B67;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.pwa-install-menu-btn:hover {
+    background: #5a3a52;
+}
+
+/* Standalone mode detection */
+@media all and (display-mode: standalone) {
+    /* Hide browser-specific UI when in PWA mode */
+    .browser-only {
+        display: none !important;
+    }
+
+    /* Show PWA-specific UI */
+    .pwa-only {
+        display: block !important;
+    }
+}
+
+/* Not standalone */
+@media not all and (display-mode: standalone) {
+    .pwa-only {
+        display: none !important;
+    }
+}

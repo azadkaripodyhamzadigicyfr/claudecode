@@ -1,0 +1,342 @@
+/* Mobile POS Optimizations */
+
+/* =================================
+   Mobile-First Responsive Design
+   ================================= */
+
+@media (max-width: 768px) {
+    /* Larger touch targets for mobile */
+    .pos .product,
+    .pos .category-button,
+    .pos .button {
+        min-height: 60px !important;
+        font-size: 16px !important;
+        padding: 12px !important;
+    }
+
+    /* Optimize product grid for mobile */
+    .pos .product-list .product {
+        width: calc(50% - 10px) !important;
+        margin: 5px !important;
+    }
+
+    /* Larger numpad buttons */
+    .pos .numpad-button {
+        min-height: 70px !important;
+        font-size: 24px !important;
+    }
+
+    /* Optimize orderlines for touch */
+    .pos .orderline {
+        min-height: 50px !important;
+        padding: 10px 5px !important;
+    }
+
+    /* Mobile-friendly payment buttons */
+    .pos .payment-button {
+        min-height: 60px !important;
+        font-size: 18px !important;
+    }
+}
+
+/* =================================
+   Tablet Optimizations (Portrait)
+   ================================= */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .pos .product-list .product {
+        width: calc(33.33% - 10px) !important;
+    }
+
+    .pos .left-pane {
+        width: 100% !important;
+    }
+
+    .pos .right-pane {
+        width: 100% !important;
+    }
+}
+
+/* =================================
+   Tablet Optimizations (Landscape)
+   ================================= */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .pos .product-list .product {
+        width: calc(25% - 10px) !important;
+    }
+}
+
+/* =================================
+   Touch-Friendly Enhancements
+   ================================= */
+
+.pos .touchable {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.pos button,
+.pos .product,
+.pos .category-button {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* =================================
+   Camera Barcode Scanner
+   ================================= */
+
+.barcode-camera-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: none;
+}
+
+.barcode-camera-container.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.barcode-camera-video {
+    max-width: 90%;
+    max-height: 70%;
+    border: 3px solid #714B67;
+    border-radius: 8px;
+}
+
+.barcode-camera-controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.barcode-camera-btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #714B67;
+    color: white;
+}
+
+.barcode-camera-btn:hover {
+    background: #5a3a52;
+}
+
+.barcode-camera-overlay {
+    position: absolute;
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+}
+
+/* =================================
+   PWA Install Prompt
+   ================================= */
+
+.pwa-install-prompt {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #714B67;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none;
+    max-width: 90%;
+    text-align: center;
+}
+
+.pwa-install-prompt.show {
+    display: block;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        bottom: -100px;
+        opacity: 0;
+    }
+    to {
+        bottom: 20px;
+        opacity: 1;
+    }
+}
+
+.pwa-install-btn {
+    margin: 10px 5px 0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pwa-install-btn.primary {
+    background: white;
+    color: #714B67;
+    font-weight: bold;
+}
+
+.pwa-install-btn.secondary {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+/* =================================
+   Quick Cash Payment Buttons
+   ================================= */
+
+.quick-cash-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.quick-cash-btn {
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid #714B67;
+    background: white;
+    color: #714B67;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.quick-cash-btn:active {
+    transform: scale(0.95);
+    background: #714B67;
+    color: white;
+}
+
+/* =================================
+   Landscape Mode Lock Message
+   ================================= */
+
+.orientation-notice {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #714B67;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+}
+
+.orientation-notice.show {
+    display: flex;
+}
+
+.orientation-notice i {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.orientation-notice h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+/* =================================
+   Loading Optimizations
+   ================================= */
+
+.pos-loading {
+    background: #714B67;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+}
+
+.pos-loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* =================================
+   Offline Indicator
+   ================================= */
+
+.offline-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ff6b6b;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    z-index: 9997;
+    display: none;
+}
+
+.offline-indicator.show {
+    display: block;
+}
+
+/* =================================
+   Accessibility Improvements
+   ================================= */
+
+.pos button:focus,
+.pos .product:focus,
+.pos .category-button:focus {
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .pos button,
+    .pos .product {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
